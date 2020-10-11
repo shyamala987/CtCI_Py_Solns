@@ -23,3 +23,31 @@ class LinkedList:
             print(str(curr.val) + ' -> ', end="")
             curr = curr.next
         print("None\n")
+
+    '''
+    1 -> 2 -> 3 -> 4
+    4 -> 3 -> 2 -> 1
+    '''
+    def reverse(self):
+        curr = self.head
+        prev = None
+        while curr.next is not None:
+            nxt = curr.next
+            nxt.next = curr
+            curr.next = prev
+            prev = curr
+            curr = nxt
+        return curr
+
+    def size(self):
+        curr = self.head
+        size = 0
+        while curr:
+            size += 1
+            curr = curr.next
+        return size
+
+    def addToFront(self, val):
+        node = Node(val)
+        node.next = self.head
+        self.head = node
